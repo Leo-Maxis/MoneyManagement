@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.collection.MainFrame">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="769" height="590"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="52392" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="d43e2" class="javax.swing.JMenuBar" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="9393f" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="File"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="1c028" class="javax.swing.JMenuItem" binding="mnLogin">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/9165684_login_arrow_icon.png"/>
+                      <text value="Login"/>
+                    </properties>
+                  </component>
+                  <component id="99a77" class="javax.swing.JMenuItem" binding="mnLogout">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/9104136_logout_sign out_exit_dooe_out_icon.png"/>
+                      <text value="Logout"/>
+                    </properties>
+                  </component>
+                  <component id="be000" class="javax.swing.JMenuItem" binding="mnLockup">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/299105_lock_icon.png"/>
+                      <text value="Lockup"/>
+                    </properties>
+                  </component>
+                  <component id="6e0ec" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="30b34" class="javax.swing.JMenuItem" binding="mnSettings">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/5027863_cogs_gear_setting_icon.png"/>
+                      <text value="Settings"/>
+                    </properties>
+                  </component>
+                  <component id="d8458" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="97793" class="javax.swing.JMenuItem" binding="mnExit">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/9104136_logout_sign out_exit_dooe_out_icon.png"/>
+                      <text value="Exit"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="8d403" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <label value="Manager"/>
+                  <text value="Manager"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="45701" class="javax.swing.JMenuItem" binding="mnAddNewExpenditure">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/2303108_write_new_document_create_icon.png"/>
+                      <text value="Add New Expenditure"/>
+                    </properties>
+                  </component>
+                  <component id="e6c45" class="javax.swing.JMenuItem" binding="mnListExpenditure">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/4288566_banking_bill_card_credit_expenditure_icon.png"/>
+                      <text value="List Expenditure"/>
+                    </properties>
+                  </component>
+                  <component id="7b303" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="33b2a" class="javax.swing.JMenuItem" binding="mnAddNewReceipt">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/2303108_write_new_document_create_icon.png"/>
+                      <text value="Add New Receipt"/>
+                    </properties>
+                  </component>
+                  <component id="e7c22" class="javax.swing.JMenuItem" binding="mnListReceipt">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/185102_receipt_shopping_icon.png"/>
+                      <text value="List Receipt"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="3b5ce" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Help"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="fab44" class="javax.swing.JMenuItem" binding="mnContent">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/4698588_call_communication_help_service_support_icon.png"/>
+                      <text value="Content"/>
+                    </properties>
+                  </component>
+                  <component id="6641c" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="100c3" class="javax.swing.JMenuItem" binding="mnAboutus">
+                    <constraints/>
+                    <properties>
+                      <icon value="icons/330401_about_details_help_info_information_icon.png"/>
+                      <text value="About us"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <hspacer id="f6ff5">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <grid id="bbb8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <toolbar id="ee3d4">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4f48e" class="javax.swing.JButton" binding="addExpenditureButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <icon value="icons/4781840_+_add_circle_create_expand_icon.png"/>
+                  <text value="Add Expenditure"/>
+                </properties>
+              </component>
+              <component id="3627b" class="javax.swing.JButton" binding="listExpenditureButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <icon value="icons/4288566_banking_bill_card_credit_expenditure_icon (1).png"/>
+                  <text value="List Expenditure"/>
+                </properties>
+              </component>
+              <component id="e49" class="javax.swing.JButton" binding="addReceiptButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <icon value="icons/4781840_+_add_circle_create_expand_icon.png"/>
+                  <text value="Add Receipt"/>
+                </properties>
+              </component>
+              <component id="f6f1d" class="javax.swing.JButton" binding="listReceiptButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <icon value="icons/7952173_receipt_paper_transation_check_sale_icon.png"/>
+                  <text value="List Receipt"/>
+                </properties>
+              </component>
+              <component id="9c0f6" class="javax.swing.JButton" binding="lockButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <icon value="icons/9004817_lock_security_secure_safety_icon.png"/>
+                  <text value="Lock"/>
+                </properties>
+              </component>
+            </children>
+          </toolbar>
+        </children>
+      </grid>
+      <grid id="e5ed9" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <tabbedpane id="b2d41" binding="tpnBoard">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="200"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="720ec" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <tabbedpane title="Home" icon="icons/home_32.png"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </tabbedpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
