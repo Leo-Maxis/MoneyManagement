@@ -30,21 +30,18 @@ public class MainFrame {
         addExpenditureButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddExpenditurePanel addExpenditurePanel = new AddExpenditurePanel();
+                JPanel addExpenditurePanel = new AddExpenditurePanel().getPanelAddExpenditure();
                 tpnBoard.addTab("Add Expenditure", addExpenditurePanel);
                 tpnBoard.setSelectedComponent(addExpenditurePanel);
-                addExpenditurePanel.frameLayout();
-
             }
         });
 
         mnAddNewExpenditure.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddExpenditurePanel addExpenditurePanel = new AddExpenditurePanel();
-//                tpnBoard.addTab("Add Expenditure", addExpenditurePanel);
-//                tpnBoard.setSelectedComponent(addExpenditurePanel);
-                addExpenditurePanel.frameLayout();
+                JPanel addExpenditurePanel = new AddExpenditurePanel().getPanelAddExpenditure();
+                tpnBoard.addTab("Add Expenditure", addExpenditurePanel);
+                tpnBoard.setSelectedComponent(addExpenditurePanel);
             }
         });
     }
@@ -56,6 +53,6 @@ public class MainFrame {
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        frame.setSize(600, 350);
+        frame.setSize(650, 450);
     }
 }
