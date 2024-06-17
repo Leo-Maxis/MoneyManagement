@@ -3,6 +3,7 @@ package org.collection;
 import org.collection.tabs.AddExpenditurePanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +26,7 @@ public class MainFrame {
     private JMenuItem mnSettings;
     private JMenuItem mnExit;
     private JPanel mainPanel;
+    private JButton btnCloseTab;
 
     public MainFrame() {
         addExpenditureButton.addActionListener(new ActionListener() {
@@ -44,6 +46,15 @@ public class MainFrame {
                 tpnBoard.setSelectedComponent(addExpenditurePanel);
             }
         });
+        btnCloseTab.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = tpnBoard.getSelectedIndex();
+                if (selectedIndex > 0) {
+                    tpnBoard.remove(selectedIndex);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -53,6 +64,6 @@ public class MainFrame {
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        frame.setSize(650, 450);
+        frame.setSize(750, 450);
     }
 }

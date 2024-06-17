@@ -4,64 +4,65 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddExpenditurePanel extends Component {
-    private JTextField textField1;
-    private JTextField textField2;
-    private JFormattedTextField formattedTextField1;
-    private JComboBox comboBox1;
-    private JTextArea textArea1;
-    private JFormattedTextField formattedTextField2;
+    private JTextField txtID;
+    private JTextField txtName;
+    private JFormattedTextField ftfAmount;
+    private JComboBox cbType;
+    private JTextArea txaNote;
+    private JFormattedTextField ftfDate;
     private JPanel panelAddExpenditure;
-    private JButton newButton;
-    private JButton saveButton;
-    private JButton updateButton;
-    private JButton deleteButton;
+    private JButton btnNew;
+    private JButton btnSave;
+    private JButton btnUpdate;
+    private JButton btnDelete;
+    private JButton btnList;
 
     public JTextField getTextField1() {
-        return textField1;
+        return txtID;
     }
 
     public void setTextField1(JTextField textField1) {
-        this.textField1 = textField1;
+        this.txtID = textField1;
     }
 
     public JTextField getTextField2() {
-        return textField2;
+        return txtName;
     }
 
     public void setTextField2(JTextField textField2) {
-        this.textField2 = textField2;
+        this.txtName = textField2;
     }
 
     public JFormattedTextField getFormattedTextField1() {
-        return formattedTextField1;
+        return ftfAmount;
     }
 
     public void setFormattedTextField1(JFormattedTextField formattedTextField1) {
-        this.formattedTextField1 = formattedTextField1;
+        this.ftfAmount = formattedTextField1;
     }
 
     public JComboBox getComboBox1() {
-        return comboBox1;
+        return cbType;
     }
 
     public void setComboBox1(JComboBox comboBox1) {
-        this.comboBox1 = comboBox1;
+        this.cbType = comboBox1;
     }
 
     public JTextArea getTextArea1() {
-        return textArea1;
+        return txaNote;
     }
 
     public void setTextArea1(JTextArea textArea1) {
-        this.textArea1 = textArea1;
+        this.txaNote = textArea1;
     }
 
     public JFormattedTextField getFormattedTextField2() {
-        return formattedTextField2;
+        return ftfDate;
     }
 
     public void setFormattedTextField2(JFormattedTextField formattedTextField2) {
-        this.formattedTextField2 = formattedTextField2;
+        this.ftfDate = formattedTextField2;
     }
 
     public JPanel getPanelAddExpenditure() {
@@ -73,35 +74,35 @@ public class AddExpenditurePanel extends Component {
     }
 
     public JButton getNewButton() {
-        return newButton;
+        return btnNew;
     }
 
     public void setNewButton(JButton newButton) {
-        this.newButton = newButton;
+        this.btnNew = newButton;
     }
 
     public JButton getSaveButton() {
-        return saveButton;
+        return btnSave;
     }
 
     public void setSaveButton(JButton saveButton) {
-        this.saveButton = saveButton;
+        this.btnSave = saveButton;
     }
 
     public JButton getUpdateButton() {
-        return updateButton;
+        return btnUpdate;
     }
 
     public void setUpdateButton(JButton updateButton) {
-        this.updateButton = updateButton;
+        this.btnUpdate = updateButton;
     }
 
     public JButton getDeleteButton() {
-        return deleteButton;
+        return btnDelete;
     }
 
     public void setDeleteButton(JButton deleteButton) {
-        this.deleteButton = deleteButton;
+        this.btnDelete = deleteButton;
     }
 
 //    public AddExpenditurePanel frameLayout() {
