@@ -1,7 +1,6 @@
-package org.collection.Main;
+package org.collection.dialogform;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class AboutUsDialog {

@@ -1,11 +1,15 @@
 package org.collection.Main;
 
+import org.collection.dialogform.AboutUsDialog;
+import org.collection.dialogform.LoginDialog;
+import org.collection.dialogform.SettingsDialog;
 import org.collection.tabs.AddExpenditurePanel;
 import org.collection.tabs.AddNewReceiptPanel;
 import org.collection.tabs.ListExpenditurePanel;
 import org.collection.tabs.ListReceiptPanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -121,6 +125,14 @@ public class MainFrame {
                 settingsDialog.getSettingsDialog();
             }
         });
+        mnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginDialog loginDialog = new LoginDialog();
+                loginDialog.getLoginDialog();
+
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -130,5 +142,8 @@ public class MainFrame {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         frame.setSize(950, 500);
+        //Login form
+        LoginDialog loginDialog = new LoginDialog();
+        loginDialog.getLoginDialog();
     }
 }
