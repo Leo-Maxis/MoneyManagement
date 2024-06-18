@@ -13,13 +13,13 @@ public class SettingsDialog {
     private JPasswordField a123qwePasswordField;
     private JPanel panelSettings;
 
-    JFrame settingsFrame = new JFrame("Settings");
+    private static JFrame settingsFrame = new JFrame("Settings");
 
     public SettingsDialog() {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                settingsFrame.dispose();
             }
         });
     }

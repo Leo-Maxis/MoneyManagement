@@ -7,27 +7,17 @@ import java.awt.event.*;
 public class AboutUsDialog {
     private JButton closeButton;
     private JPanel panelAboutUs;
-    JFrame frameAboutUs = new JFrame("About Us");
+    private static JFrame frameAboutUs = new JFrame("About Us");
 
 
     public AboutUsDialog() {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                frameAboutUs.setContentPane(new AboutUsDialog().panelAboutUs);
-//                frameAboutUs.setVisible(false);
                 frameAboutUs.dispose();
             }
         });
-//        closeButton.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if(e.getClickCount() == 1) {
-//                    frameAboutUs.dispose();
-//                    frameAboutUs.setVisible(false);
-//                }
-//            }
-//        });
+
     }
 
     public void getAboutUsDialog() {
