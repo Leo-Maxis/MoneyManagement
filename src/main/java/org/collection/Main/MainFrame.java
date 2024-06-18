@@ -30,6 +30,8 @@ public class MainFrame {
     private JPanel mainPanel;
     private JButton btnCloseTab;
 
+    static JFrame frame = new JFrame("Mainframe");
+
     public MainFrame() {
         addExpenditureButton.addActionListener(new ActionListener() {
             @Override
@@ -109,13 +111,19 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                AboutUsDialog aboutUsDialog = new AboutUsDialog();
-                aboutUsDialog.AboutUsDialog();
+                aboutUsDialog.getAboutUsDialog();
+            }
+        });
+        mnSettings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SettingsDialog settingsDialog = new SettingsDialog();
+                settingsDialog.getSettingsDialog();
             }
         });
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Mainframe");
         frame.setContentPane(new MainFrame().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

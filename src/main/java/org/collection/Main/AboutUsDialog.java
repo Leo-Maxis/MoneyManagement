@@ -2,50 +2,56 @@ package org.collection.Main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
-public class AboutUsDialog extends Component {
+public class AboutUsDialog {
     private JButton closeButton;
     private JPanel panelAboutUs;
-    JFrame frame = new JFrame("About Us");
+    JFrame frameAboutUs = new JFrame("About Us");
 
 
     public AboutUsDialog() {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setContentPane(new AboutUsDialog().panelAboutUs);
-//               frame.setContentPane(closeButton);
-//               frame.dispose();
-               frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSED));
+//                frameAboutUs.setContentPane(new AboutUsDialog().panelAboutUs);
+//                frameAboutUs.setVisible(false);
+                frameAboutUs.dispose();
             }
         });
+//        closeButton.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                if(e.getClickCount() == 1) {
+//                    frameAboutUs.dispose();
+//                    frameAboutUs.setVisible(false);
+//                }
+//            }
+//        });
     }
 
-    public void AboutUsDialog() {
-        frame.setContentPane(new AboutUsDialog().panelAboutUs);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        frame.setSize(500, 250);
+    public void getAboutUsDialog() {
+        frameAboutUs.setContentPane(new AboutUsDialog().panelAboutUs);
+        frameAboutUs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frameAboutUs.pack();
+        frameAboutUs.setVisible(true);
+        frameAboutUs.setLocationRelativeTo(null);
+        frameAboutUs.setSize(500, 250);
     }
 
-    public JButton getCloseButton() {
-        return closeButton;
-    }
-
-    public void setCloseButton(JButton closeButton) {
-        this.closeButton = closeButton;
-    }
-
-    public JPanel getPanelAboutUs() {
-        return panelAboutUs;
-    }
-
-    public void setPanelAboutUs(JPanel panelAboutUs) {
-        this.panelAboutUs = panelAboutUs;
-    }
+//    public JButton getCloseButton() {
+//        return closeButton;
+//    }
+//
+//    public void setCloseButton(JButton closeButton) {
+//        this.closeButton = closeButton;
+//    }
+//
+//    public JPanel getPanelAboutUs() {
+//        return panelAboutUs;
+//    }
+//
+//    public void setPanelAboutUs(JPanel panelAboutUs) {
+//        this.panelAboutUs = panelAboutUs;
+//    }
 }
