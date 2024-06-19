@@ -9,7 +9,6 @@ import org.collection.tabs.ListExpenditurePanel;
 import org.collection.tabs.ListReceiptPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -115,7 +114,7 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                AboutUsDialog aboutUsDialog = new AboutUsDialog();
-                aboutUsDialog.getAboutUsDialog();
+               aboutUsDialog.getAboutUsDialog();
             }
         });
         mnSettings.addActionListener(new ActionListener() {
@@ -131,6 +130,27 @@ public class MainFrame {
                 LoginDialog loginDialog = new LoginDialog();
                 loginDialog.getLoginDialog();
 
+            }
+        });
+        mnLogout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginDialog loginDialog = new LoginDialog();
+                loginDialog.getLoginDialog();
+            }
+        });
+        mnLockup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginDialog loginDialog = new LoginDialog();
+                loginDialog.getLoginDialog();
+            }
+        });
+        lockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginDialog loginDialog = new LoginDialog();
+                loginDialog.getLoginDialog();
             }
         });
     }
