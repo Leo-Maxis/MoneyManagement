@@ -79,7 +79,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="admin"/>
+            </properties>
           </component>
           <component id="8cb3" class="javax.swing.JPasswordField" binding="txtPassword">
             <constraints>
@@ -87,7 +89,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="123"/>
+            </properties>
           </component>
           <component id="cff91" class="javax.swing.JCheckBox" binding="chbRememberMe">
             <constraints>

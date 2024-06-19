@@ -1,7 +1,6 @@
 package org.collection.dialogform;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,10 +25,11 @@ public class LoginDialog extends JDialog {
     }
 
     public void getLoginDialog() {
-        loginDialog.getContentPane().add(loginPanel);
-        loginDialog.pack();
-        loginDialog.setVisible(true);
-        loginDialog.setSize(400, 250);
-        loginDialog.setLocationRelativeTo(null);
+//        loginDialog.getContentPane().add(loginPanel);
+//        loginDialog.pack();
+//        loginDialog.setVisible(true);
+//        loginDialog.setSize(400, 250);
+//        loginDialog.setLocationRelativeTo(null);
     }
+
 }

@@ -120,6 +120,38 @@
                       <text value="List Receipt"/>
                     </properties>
                   </component>
+                  <component id="7ba84" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="4c0cd" class="javax.swing.JMenuItem" binding="mnAddExpenditureType">
+                    <constraints/>
+                    <properties>
+                      <text value="Add Expenditure Type"/>
+                    </properties>
+                  </component>
+                  <component id="b3dec" class="javax.swing.JMenuItem" binding="mnListExpendiureType">
+                    <constraints/>
+                    <properties>
+                      <text value="List Expenditure"/>
+                    </properties>
+                  </component>
+                  <component id="4871c" class="javax.swing.JSeparator">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                  <component id="d8c76" class="javax.swing.JMenuItem" binding="mnAddReceiptType">
+                    <constraints/>
+                    <properties>
+                      <text value="Add Receipt Type"/>
+                    </properties>
+                  </component>
+                  <component id="4082d" class="javax.swing.JMenuItem" binding="mnListReceiptType">
+                    <constraints/>
+                    <properties>
+                      <text value="List Receipt Type"/>
+                    </properties>
+                  </component>
                 </children>
               </grid>
               <grid id="3b5ce" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">

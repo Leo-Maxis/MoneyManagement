@@ -3,13 +3,9 @@ package org.collection.Main;
 import org.collection.dialogform.AboutUsDialog;
 import org.collection.dialogform.LoginDialog;
 import org.collection.dialogform.SettingsDialog;
-import org.collection.tabs.AddExpenditurePanel;
-import org.collection.tabs.AddNewReceiptPanel;
-import org.collection.tabs.ListExpenditurePanel;
-import org.collection.tabs.ListReceiptPanel;
+import org.collection.tabs.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,6 +29,10 @@ public class MainFrame {
     private JMenuItem mnExit;
     private JPanel mainPanel;
     private JButton btnCloseTab;
+    private JMenuItem mnAddExpenditureType;
+    private JMenuItem mnListExpendiureType;
+    private JMenuItem mnAddReceiptType;
+    private JMenuItem mnListReceiptType;
 
     static JFrame frame = new JFrame("Mainframe");
 
@@ -115,7 +115,7 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                AboutUsDialog aboutUsDialog = new AboutUsDialog();
-                aboutUsDialog.getAboutUsDialog();
+               aboutUsDialog.getAboutUsDialog();
             }
         });
         mnSettings.addActionListener(new ActionListener() {
@@ -131,6 +131,59 @@ public class MainFrame {
                 LoginDialog loginDialog = new LoginDialog();
                 loginDialog.getLoginDialog();
 
+            }
+        });
+        mnLogout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginDialog loginDialog = new LoginDialog();
+                loginDialog.getLoginDialog();
+            }
+        });
+        mnLockup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginDialog loginDialog = new LoginDialog();
+                loginDialog.getLoginDialog();
+            }
+        });
+        lockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginDialog loginDialog = new LoginDialog();
+                loginDialog.getLoginDialog();
+            }
+        });
+        mnAddExpenditureType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panelAddExpenditureType = new AddExpenditureTypePanel().getPanelAddExpenditureType();
+                tpnBoard.addTab("Add Expenditure Type",panelAddExpenditureType);
+                tpnBoard.setSelectedComponent(panelAddExpenditureType);
+            }
+        });
+        mnListExpendiureType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panelListExpenditureType = new ListExpenditureTypePanel().getPanelListExpenditureType();
+                tpnBoard.addTab("List Expenditure Type", panelListExpenditureType);
+                tpnBoard.setSelectedComponent(panelListExpenditureType);
+            }
+        });
+        mnAddReceiptType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panelAddReceiptType = new AddReceiptTypePanel().getPanelAddReceiptType();
+                tpnBoard.addTab("Add Receipt Type", panelAddReceiptType);
+                tpnBoard.setSelectedComponent(panelAddReceiptType);
+            }
+        });
+        mnListReceiptType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panelListReceiptType = new ListReceiptTypePanel().getPanelListReceiptType();
+                tpnBoard.addTab("List Receipt Type", panelListReceiptType);
+                tpnBoard.setSelectedComponent(panelListReceiptType);
             }
         });
     }
