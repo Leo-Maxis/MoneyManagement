@@ -1,5 +1,6 @@
 package org.collection.tabs;
 
+import org.collection.Main.validator.ExpenditureTypeValidator;
 import org.collection.dao.ExpenditureTypeDAO;
 import org.collection.entity.ExpenditureType;
 import org.collection.util.MessageBox;
@@ -34,17 +35,9 @@ public class AddExpenditureTypePanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    StringBuilder sb = new StringBuilder();
-                    if (txtName.getText().equals("")) {
-                        sb.append("Name must be entered");
-                        txtName.setBackground(Color.yellow);
-                        txtName.setEditable(true);
-                    }
-                    else {
-                        txtName.setBackground(Color.white);
-                    }
-                    if (!sb.isEmpty()) {
-                        MessageBox.showErrorMessage(null, "Error", sb.toString());
+                    String valid = ExpenditureTypeValidator.validate(txtName);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, "Error", valid);
                         return;
                     }
                     ExpenditureType entity = new ExpenditureType();
@@ -67,6 +60,7 @@ public class AddExpenditureTypePanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 txtName.setEditable(true);
+                changeButtonState(true, false,true,true);
             }
         });
         btnNew.addActionListener(new ActionListener() {
@@ -75,6 +69,31 @@ public class AddExpenditureTypePanel {
                 txtID.setText("");
                 txtName.setText("");
                 changeButtonState(false, true, false, false);
+            }
+        });
+        btnUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String valid = ExpenditureTypeValidator.validate(txtName);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, "Error", valid);
+                        return;
+                    }
+                    ExpenditureType entity = new ExpenditureType();
+                    entity.setId(Integer.parseInt(txtID.getText()));
+                    entity.setName(txtName.getText());
+                    ExpenditureTypeDAO dao = new ExpenditureTypeDAO();
+                    entity = dao.update(entity);
+                    MessageBox.showInfomationMessage(null, "Infomation","Type is updated!!");
+                    txtID.setEditable(false);
+                    txtName.setEditable(false);
+                    changeButtonState(true, false, false, true);
+                } catch (Exception exception) {
+//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
             }
         });
     }

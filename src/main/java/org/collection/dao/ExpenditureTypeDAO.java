@@ -23,4 +23,16 @@ public class ExpenditureTypeDAO {
             return entity;
         }
     }
+
+    public ExpenditureType update(ExpenditureType entity) throws SQLException, ClassNotFoundException {
+        String sql = "update ExpenditureType set name =? where id =?";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            pstmt.setString(1, entity.getName());
+            pstmt.setInt(2, entity.getId());
+            pstmt.executeUpdate();
+            return entity;
+        }
+    }
 }
