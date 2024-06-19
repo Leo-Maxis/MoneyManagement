@@ -1,6 +1,7 @@
 package org.collection.dialogform;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +14,6 @@ public class LoginDialog extends JDialog {
     private JPanel loginPanel;
 
     private  static JDialog loginDialog = new LoginDialog();
-    private ModalityType modal;
 
 
     public LoginDialog() {
@@ -32,5 +32,4 @@ public class LoginDialog extends JDialog {
         loginDialog.setSize(400, 250);
         loginDialog.setLocationRelativeTo(null);
     }
-
 }
