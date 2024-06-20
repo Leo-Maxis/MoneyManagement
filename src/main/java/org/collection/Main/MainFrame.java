@@ -166,7 +166,7 @@ public class MainFrame {
         mnListExpendiureType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel panelListExpenditureType = new ListExpenditureTypePanel().getPanelListExpenditureType();
+                JPanel panelListExpenditureType = new ListExpenditureTypePanel(MainFrame.this).getPanelListExpenditureType();
                 tpnBoard.addTab("List Expenditure Type", panelListExpenditureType);
                 tpnBoard.setSelectedComponent(panelListExpenditureType);
             }
@@ -189,9 +189,15 @@ public class MainFrame {
         });
     }
     public void showListExpenditureTypes() {
-        JPanel panelListExpenditureType = new ListExpenditureTypePanel().getPanelListExpenditureType();
-        tpnBoard.addTab("List Expenditure Type", panelListExpenditureType);
-        tpnBoard.setSelectedComponent(panelListExpenditureType);
+        JPanel panelListExpenditureTypeExpenditureType = new ListExpenditureTypePanel(MainFrame.this).getPanelListExpenditureType();
+        tpnBoard.addTab("List Expenditure Type", panelListExpenditureTypeExpenditureType);
+        tpnBoard.setSelectedComponent(panelListExpenditureTypeExpenditureType);
+    }
+
+    public void showEditExpenditureTypes(int id) {
+        JPanel panelAddExpenditureType = new AddExpenditureTypePanel(this, id).getPanelAddExpenditureType();
+        tpnBoard.addTab("Edit Expenditure Type", panelAddExpenditureType);
+        tpnBoard.setSelectedComponent(panelAddExpenditureType);
     }
 
     public static void main(String[] args) {

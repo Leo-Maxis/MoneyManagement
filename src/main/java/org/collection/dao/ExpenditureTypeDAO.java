@@ -65,4 +65,21 @@ public class ExpenditureTypeDAO {
             return list;
         }
     }
+    public ExpenditureType findById(int id) throws SQLException, ClassNotFoundException {
+        String sql = "select * from ExpenditureType where id = ?";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            pstmt.setInt(1,id);
+            try(ResultSet rs = pstmt.executeQuery();) {
+                while (rs.next()) {
+                    ExpenditureType entity = new ExpenditureType();
+                    entity.setId(rs.getInt("id"));
+                    entity.setName(rs.getString("name"));
+                    return entity;
+                }
+            }
+            return null;
+        }
+    }
 }
