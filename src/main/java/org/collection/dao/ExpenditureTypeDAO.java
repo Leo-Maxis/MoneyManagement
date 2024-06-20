@@ -35,4 +35,14 @@ public class ExpenditureTypeDAO {
             return entity;
         }
     }
+
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
+        String sql = "delete from ExpenditureType where id =?";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            pstmt.setInt(1, id);
+            return pstmt.executeUpdate() > 0;
+        }
+    }
 }

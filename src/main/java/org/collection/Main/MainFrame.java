@@ -157,11 +157,12 @@ public class MainFrame {
         mnAddExpenditureType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel panelAddExpenditureType = new AddExpenditureTypePanel().getPanelAddExpenditureType();
+                JPanel panelAddExpenditureType = new AddExpenditureTypePanel(MainFrame.this).getPanelAddExpenditureType();
                 tpnBoard.addTab("Add Expenditure Type",panelAddExpenditureType);
                 tpnBoard.setSelectedComponent(panelAddExpenditureType);
             }
         });
+
         mnListExpendiureType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -186,6 +187,11 @@ public class MainFrame {
                 tpnBoard.setSelectedComponent(panelListReceiptType);
             }
         });
+    }
+    public void showListExpenditureTypes() {
+        JPanel panelListExpenditureType = new ListExpenditureTypePanel().getPanelListExpenditureType();
+        tpnBoard.addTab("List Expenditure Type", panelListExpenditureType);
+        tpnBoard.setSelectedComponent(panelListExpenditureType);
     }
 
     public static void main(String[] args) {

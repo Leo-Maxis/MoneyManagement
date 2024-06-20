@@ -13,4 +13,10 @@ public class MessageBox {
     public static void showWarningMessage(Component parent, String title, String message) {
         JOptionPane.showMessageDialog(parent, message, title, JOptionPane.WARNING_MESSAGE);
     }
+    public static int showConfirmMessage(Component parent, String title, String message) {
+       return JOptionPane.showConfirmDialog(parent, message, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    }
+    public static int showConfirmMessage(Component parent, String message) {
+        return showConfirmMessage(parent, "Confirmation", message);
+    }
 }

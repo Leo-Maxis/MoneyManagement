@@ -1,5 +1,6 @@
 package org.collection.tabs;
 
+import org.collection.Main.MainFrame;
 import org.collection.Main.validator.ExpenditureTypeValidator;
 import org.collection.dao.ExpenditureTypeDAO;
 import org.collection.entity.ExpenditureType;
@@ -21,6 +22,7 @@ public class AddExpenditureTypePanel {
     private JButton btnList;
     private JButton btnEdit;
 
+    private MainFrame mainFrame;
 
     private void changeButtonState(boolean edit, boolean save, boolean update, boolean delete) {
         btnEdit.setEnabled(edit);
@@ -29,7 +31,10 @@ public class AddExpenditureTypePanel {
         btnDelete.setEnabled(delete);
     }
 
-    public AddExpenditureTypePanel() {
+
+
+    public AddExpenditureTypePanel(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         changeButtonState(false, true, false, false);
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -75,6 +80,9 @@ public class AddExpenditureTypePanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to update?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
                     String valid = ExpenditureTypeValidator.validate(txtName);
                     if (valid!=null) {
                         MessageBox.showErrorMessage(null, "Error", valid);
@@ -94,6 +102,38 @@ public class AddExpenditureTypePanel {
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
+            }
+        });
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to delete?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    ExpenditureTypeDAO dao = new ExpenditureTypeDAO();
+                    int id = Integer.parseInt(txtID.getText());
+                    if (dao.delete(id)) {
+                        MessageBox.showInfomationMessage(null, "Infomation","Type is deleted!");
+                    }
+                    else  {
+                        MessageBox.showErrorMessage(null, "Error", "Typed can not be deleted!");
+                    }
+                    txtID.setText("");
+                    txtName.setText("");
+                    changeButtonState(false, true, false, false);
+                    txtName.setEditable(true);
+                } catch (Exception exception) {
+//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.showListExpenditureTypes();
             }
         });
     }
