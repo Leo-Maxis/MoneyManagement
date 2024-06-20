@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExpenditureTypeDAO {
     public ExpenditureType insert(ExpenditureType entity) throws SQLException, ClassNotFoundException {
@@ -43,6 +45,24 @@ public class ExpenditureTypeDAO {
             PreparedStatement pstmt = con.prepareStatement(sql);) {
             pstmt.setInt(1, id);
             return pstmt.executeUpdate() > 0;
+        }
+    }
+    public List<ExpenditureType> findAll() throws SQLException, ClassNotFoundException {
+        String sql = "select * from ExpenditureType";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            List<ExpenditureType> list = new ArrayList<>();
+
+            try(ResultSet rs = pstmt.executeQuery();) {
+                while (rs.next()) {
+                    ExpenditureType entity = new ExpenditureType();
+                    entity.setId(rs.getInt("id"));
+                    entity.setName(rs.getString("name"));
+                    list.add(entity);
+                }
+            }
+            return list;
         }
     }
 }
