@@ -75,7 +75,6 @@ public class ListExpenditureTypePanel {
                 Object[] row = new Object[]{item.getId(), item.getName()};
                 model.addRow(row);
             }
-
             model.fireTableDataChanged();
         } catch (Exception e) {
             MessageBox.showErrorMessage(null, "Error", e.getMessage());
