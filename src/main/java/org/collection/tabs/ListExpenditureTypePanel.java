@@ -5,21 +5,50 @@ import org.collection.entity.ExpenditureType;
 import org.collection.util.MessageBox;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ComponentAdapter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 
 public class ListExpenditureTypePanel {
     private JPanel panelListExpenditureType;
     private JTable tblList;
+    private JButton btnDelete;
+    private JButton btnEdit;
     private DefaultTableModel model = null;
 
     public ListExpenditureTypePanel() {
         initTable();
         loadData();
-//        panelListExpenditureType.addComponentListener(new ComponentAdapter() {
-//        });
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to delete?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    ExpenditureTypeDAO dao = new ExpenditureTypeDAO();
+                    int selectedRow = tblList.getSelectedRow();
+                    Object idObj = tblList.getValueAt(selectedRow, 0);
+                   if (idObj != null) {
+                       int id = Integer.parseInt(idObj.toString());
+                       if (dao.delete(id)) {
+                           MessageBox.showInfomationMessage(null, "Infomation","Type is deleted!");
+                           loadData();
+                       }
+                       else  {
+                           MessageBox.showErrorMessage(null, "Error", "Typed can not be deleted!");
+                       }
+                   }
+                } catch (Exception exception) {
+//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
     }
 
     public JPanel getPanelListExpenditureType() {
@@ -52,4 +81,22 @@ public class ListExpenditureTypePanel {
             MessageBox.showErrorMessage(null, "Error", e.getMessage());
         }
     }
+
+    private void popupMenu() {
+        JFrame jFrame = new JFrame();
+        JPanel jPanel = new JPanel();
+        BoxLayout boxLayout = new BoxLayout(jPanel,BoxLayout.Y_AXIS);
+        EmptyBorder emptyBorder = new EmptyBorder(20,20,20,20);
+        jPanel.setBorder(emptyBorder);
+        jPanel.setLayout(boxLayout);
+        jFrame.add(jPanel);
+        JPopupMenu jPopupMenu = new JPopupMenu();
+        JMenuItem edit = new JMenuItem("Edit");
+        JMenuItem delete = new JMenuItem("Delete");
+
+        jPopupMenu.add(edit);
+        jPopupMenu.add(delete);
+
+    }
+
 }
