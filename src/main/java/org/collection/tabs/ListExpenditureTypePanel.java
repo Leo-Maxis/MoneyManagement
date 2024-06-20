@@ -81,22 +81,4 @@ public class ListExpenditureTypePanel {
             MessageBox.showErrorMessage(null, "Error", e.getMessage());
         }
     }
-
-    private void popupMenu() {
-        JFrame jFrame = new JFrame();
-        JPanel jPanel = new JPanel();
-        BoxLayout boxLayout = new BoxLayout(jPanel,BoxLayout.Y_AXIS);
-        EmptyBorder emptyBorder = new EmptyBorder(20,20,20,20);
-        jPanel.setBorder(emptyBorder);
-        jPanel.setLayout(boxLayout);
-        jFrame.add(jPanel);
-        JPopupMenu jPopupMenu = new JPopupMenu();
-        JMenuItem edit = new JMenuItem("Edit");
-        JMenuItem delete = new JMenuItem("Delete");
-
-        jPopupMenu.add(edit);
-        jPopupMenu.add(delete);
-
-    }
-
 }
