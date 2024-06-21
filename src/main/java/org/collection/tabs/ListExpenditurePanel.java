@@ -1,5 +1,6 @@
 package org.collection.tabs;
 
+import org.collection.Main.MainFrame;
 import org.collection.dao.ExpenditureDAO;
 import org.collection.entity.Expenditure;
 import org.collection.util.MessageBox;
@@ -18,8 +19,10 @@ public class ListExpenditurePanel extends Component {
     private JButton btnViewDetail;
 
     private DefaultTableModel model;
+    private MainFrame mainFrame;
 
-    public ListExpenditurePanel() {
+    public ListExpenditurePanel(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         initTable();
         loadAll();
         btnDelete.addActionListener(new ActionListener() {
@@ -45,6 +48,17 @@ public class ListExpenditurePanel extends Component {
                 } catch (Exception exception) {
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tblList.getSelectedRow();
+                Object idObj = tblList.getValueAt(selectedRow, 0);
+                if (idObj != null) {
+                    int id = Integer.parseInt(idObj.toString());
+                    mainFrame.showEditExpenditure(id);
                 }
             }
         });

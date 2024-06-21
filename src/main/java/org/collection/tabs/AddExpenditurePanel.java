@@ -139,6 +139,129 @@ public class AddExpenditurePanel extends Component {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to delete?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    int id = Integer.parseInt(txtID.getText());
+                    ExpenditureDAO dao = new ExpenditureDAO();
+                    var result = dao.delete(id);
+                    if (result) {
+                        MessageBox.showInfomationMessage(null, "Infomation","Expenditure is deleted!!");
+                        txtID.setText("");
+                        txtName.setText("");
+                        ftfAmount.setText("");
+                        ftfDate.setText("");
+                        txaNote.setText("");
+                    } else  {
+                        MessageBox.showErrorMessage(null, "Expenditure cannot be deleted!!");
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.showListExpenditure();
+            }
+        });
+    }
+
+    public AddExpenditurePanel(MainFrame mainFrame, int id) {
+        loadByID(id);
+        this.mainFrame = mainFrame;
+        loadType();
+        changeButtonState(false, true, false, false);
+        btnNew.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtID.setText("");
+                txtName.setText("");
+                ftfAmount.setText("");
+                ftfDate.setText("");
+                txaNote.setText("");
+                changFieldStates(true);
+                changeButtonState(false,true,false,false);
+            }
+        });
+        btnSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String valid = ExpenditureValidator.validate(txtName,ftfAmount, ftfDate, cbType);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, "Error", valid);
+                        return;
+                    }
+                    Expenditure entity = new Expenditure();
+                    entity.setName(txtName.getText());
+                    entity.setAmount(Double.parseDouble(ftfAmount.getText()));
+                    DateUtil dateUtil = new DateUtil();
+                    entity.setExpenditureDate(dateUtil.toDate(ftfDate.getText()));
+                    entity.setNote(txaNote.getText());
+                    ExpenditureType ext = (ExpenditureType) cbType.getSelectedItem();
+                    entity.setType(ext.getId());
+                    ExpenditureDAO dao = new ExpenditureDAO();
+                    entity = dao.insert(entity);
+                    txtID.setText("" + entity.getId());
+                    MessageBox.showInfomationMessage(null, "Infomation","Type is saved");
+                    changFieldStates(false);
+                    changeButtonState(true, false, true, true);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeButtonState(true,false,true,true);
+                changFieldStates(true);
+            }
+        });
+        btnUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to update?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    String valid = ExpenditureValidator.validate(txtName,ftfAmount, ftfDate, cbType);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, "Error", valid);
+                        return;
+                    }
+                    Expenditure entity = new Expenditure();
+                    entity.setName(txtName.getText());
+                    entity.setAmount(Double.parseDouble(ftfAmount.getText()));
+                    DateUtil dateUtil = new DateUtil();
+                    entity.setExpenditureDate(dateUtil.toDate(ftfDate.getText()));
+                    entity.setNote(txaNote.getText());
+                    ExpenditureType ext = (ExpenditureType) cbType.getSelectedItem();
+                    entity.setType(ext.getId());
+                    entity.setId(Integer.parseInt(txtID.getText()));
+                    ExpenditureDAO dao = new ExpenditureDAO();
+                    var result = dao.update(entity);
+                    if (result) {
+                        MessageBox.showInfomationMessage(null, "Infomation","Expenditure is updated!!");
+                    } else  {
+                        MessageBox.showErrorMessage(null, "Expenditure cannot be updated!!");
+                    }
+                    changFieldStates(false);
+                    changeButtonState(true, false, false, true);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
                 if (MessageBox.showConfirmMessage(null, "Do you want to delete?")==JOptionPane.NO_OPTION) {
                     return;
                 }
@@ -187,6 +310,30 @@ public class AddExpenditurePanel extends Component {
         } catch (Exception ex) {
             ex.printStackTrace();
             MessageBox.showErrorMessage(AddExpenditurePanel.this, ex.getMessage());
+        }
+    }
+
+    private void loadByID(int id) {
+        try {
+            ExpenditureDAO dao = new ExpenditureDAO();
+            Expenditure entity = dao.findById(id);
+            txtID.setText("" + entity.getId());
+            txtName.setText(entity.getName());
+            ftfAmount.setText("" + entity.getAmount());
+            DateUtil dateUtil = new DateUtil();
+            ftfDate.setText(dateUtil.toString(entity.getExpenditureDate()));
+            txaNote.setText(entity.getNote());
+            for (int i = 0; i < cbType.getItemCount(); i++) {
+                var item = cbType.getItemAt(i);
+                if (item.getId() == entity.getType()) {
+                    cbType.setSelectedItem(item);
+                    break;
+                }
+            }
+            changFieldStates(true);
+            changeButtonState(true, false, true, true);
+        } catch (Exception e) {
+            MessageBox.showErrorMessage(null,"Error", e.getMessage());
         }
     }
 

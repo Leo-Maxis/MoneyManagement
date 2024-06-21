@@ -59,7 +59,7 @@ public class ExpenditureDAO {
             PreparedStatement pstmt = con.prepareStatement(sql);) {
             List<Expenditure> list = new ArrayList<>();
 
-            try(ResultSet rs = pstmt.executeQuery();) {
+            try(ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Expenditure entity = new Expenditure();
                     entity.setId(rs.getInt("id"));
@@ -72,6 +72,29 @@ public class ExpenditureDAO {
                 }
             }
             return list;
+        }
+    }
+    public Expenditure findById(int id) throws SQLException, ClassNotFoundException {
+        String sql = "select * from Expenditure where id =?";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            List<Expenditure> list = new ArrayList<>();
+            pstmt.setInt(1,id);
+
+            try(ResultSet rs = pstmt.executeQuery();) {
+                if (rs.next()) {
+                    Expenditure entity = new Expenditure();
+                    entity.setId(rs.getInt("id"));
+                    entity.setName(rs.getString("name"));
+                    entity.setAmount(rs.getDouble("amount"));
+                    entity.setExpenditureDate(rs.getDate("expenditureDate"));
+                    entity.setNote(rs.getString("note"));
+                    entity.setType(rs.getInt("type"));
+                    return entity;
+                }
+            }
+            return null;
         }
     }
 }
