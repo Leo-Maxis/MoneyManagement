@@ -2,8 +2,11 @@ package org.collection.tabs;
 
 import org.collection.Main.validator.ExpenditureTypeValidator;
 import org.collection.Main.validator.ExpenditureValidator;
+import org.collection.dao.ExpenditureDAO;
 import org.collection.dao.ExpenditureTypeDAO;
+import org.collection.entity.Expenditure;
 import org.collection.entity.ExpenditureType;
+import org.collection.util.DateUtil;
 import org.collection.util.MessageBox;
 
 import javax.swing.*;
@@ -33,37 +36,49 @@ public class AddExpenditurePanel extends Component {
         btnDelete.setEnabled(delete);
     }
 
+    private void changFieldStates(boolean isEditable) {
+        txtName.setEditable(isEditable);
+        ftfAmount.setEditable(isEditable);
+        ftfDate.setEditable(isEditable);
+        txaNote.setEditable(isEditable);
+        cbType.setEditable(isEditable);
+    }
+
     public AddExpenditurePanel() {
         loadType();
         changeButtonState(false, true, false, false);
         btnNew.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    String valid = ExpenditureValidator.validate(txtName);
-                    if (valid!=null) {
-                        MessageBox.showErrorMessage(null, "Error", valid);
-                        return;
-                    }
-                    ExpenditureType entity = new ExpenditureType();
-                    entity.setName(txtName.getText());
-                    ExpenditureTypeDAO dao = new ExpenditureTypeDAO();
-                    entity = dao.insert(entity);
-                    txtID.setText("" + entity.getId());
-                    MessageBox.showInfomationMessage(null, "Infomation","Type is saved");
-                    txtID.setEditable(false);
-                    txtName.setEditable(false);
-                    changeButtonState(true, false, true, true);
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
-                }
+
             }
         });
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    String valid = ExpenditureValidator.validate(txtName,ftfAmount, ftfDate, cbType);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, "Error", valid);
+                        return;
+                    }
+                    Expenditure entity = new Expenditure();
+                    entity.setName(txtName.getText());
+                    entity.setAmount(Double.parseDouble(ftfAmount.getText()));
+                    DateUtil dateUtil = new DateUtil();
+                    entity.setExpenditureDate(dateUtil.toDate(ftfDate.getText()));
+                    entity.setNote(txaNote.getText());
+                    ExpenditureType ext = (ExpenditureType) cbType.getSelectedItem();
+                    entity.setType(ext.getId());
+                    ExpenditureDAO dao = new ExpenditureDAO();
+                    entity = dao.insert(entity);
+                    txtID.setText("" + entity.getId());
+                    changFieldStates(false);
+                    changeButtonState(true, false, true, true);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
             }
         });
     }
