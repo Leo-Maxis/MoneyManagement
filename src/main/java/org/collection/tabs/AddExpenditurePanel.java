@@ -1,13 +1,21 @@
 package org.collection.tabs;
 
+import org.collection.Main.validator.ExpenditureTypeValidator;
+import org.collection.Main.validator.ExpenditureValidator;
+import org.collection.dao.ExpenditureTypeDAO;
+import org.collection.entity.ExpenditureType;
+import org.collection.util.MessageBox;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddExpenditurePanel extends Component {
     private JTextField txtID;
     private JTextField txtName;
     private JFormattedTextField ftfAmount;
-    private JComboBox cbType;
+    private JComboBox<ExpenditureType> cbType;
     private JTextArea txaNote;
     private JFormattedTextField ftfDate;
     private JPanel panelAddExpenditure;
@@ -16,53 +24,48 @@ public class AddExpenditurePanel extends Component {
     private JButton btnUpdate;
     private JButton btnDelete;
     private JButton btnList;
+    private JButton btnEdit;
 
-    public JTextField getTextField1() {
-        return txtID;
+    private void changeButtonState(boolean edit, boolean save, boolean update, boolean delete) {
+        btnEdit.setEnabled(edit);
+        btnSave.setEnabled(save);
+        btnUpdate.setEnabled(update);
+        btnDelete.setEnabled(delete);
     }
 
-    public void setTextField1(JTextField textField1) {
-        this.txtID = textField1;
-    }
+    public AddExpenditurePanel() {
+        loadType();
+        changeButtonState(false, true, false, false);
+        btnNew.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String valid = ExpenditureValidator.validate(txtName);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, "Error", valid);
+                        return;
+                    }
+                    ExpenditureType entity = new ExpenditureType();
+                    entity.setName(txtName.getText());
+                    ExpenditureTypeDAO dao = new ExpenditureTypeDAO();
+                    entity = dao.insert(entity);
+                    txtID.setText("" + entity.getId());
+                    MessageBox.showInfomationMessage(null, "Infomation","Type is saved");
+                    txtID.setEditable(false);
+                    txtName.setEditable(false);
+                    changeButtonState(true, false, true, true);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-    public JTextField getTextField2() {
-        return txtName;
-    }
-
-    public void setTextField2(JTextField textField2) {
-        this.txtName = textField2;
-    }
-
-    public JFormattedTextField getFormattedTextField1() {
-        return ftfAmount;
-    }
-
-    public void setFormattedTextField1(JFormattedTextField formattedTextField1) {
-        this.ftfAmount = formattedTextField1;
-    }
-
-    public JComboBox getComboBox1() {
-        return cbType;
-    }
-
-    public void setComboBox1(JComboBox comboBox1) {
-        this.cbType = comboBox1;
-    }
-
-    public JTextArea getTextArea1() {
-        return txaNote;
-    }
-
-    public void setTextArea1(JTextArea textArea1) {
-        this.txaNote = textArea1;
-    }
-
-    public JFormattedTextField getFormattedTextField2() {
-        return ftfDate;
-    }
-
-    public void setFormattedTextField2(JFormattedTextField formattedTextField2) {
-        this.ftfDate = formattedTextField2;
+            }
+        });
     }
 
     public JPanel getPanelAddExpenditure() {
@@ -73,47 +76,17 @@ public class AddExpenditurePanel extends Component {
         this.panelAddExpenditure = panelAddExpenditure;
     }
 
-    public JButton getNewButton() {
-        return btnNew;
+    private void loadType() {
+        try {
+            ExpenditureTypeDAO dao = new ExpenditureTypeDAO();
+            var list = dao.findAll();
+            for(ExpenditureType item : list) {
+                cbType.addItem(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            MessageBox.showErrorMessage(AddExpenditurePanel.this, ex.getMessage());
+        }
     }
-
-    public void setNewButton(JButton newButton) {
-        this.btnNew = newButton;
-    }
-
-    public JButton getSaveButton() {
-        return btnSave;
-    }
-
-    public void setSaveButton(JButton saveButton) {
-        this.btnSave = saveButton;
-    }
-
-    public JButton getUpdateButton() {
-        return btnUpdate;
-    }
-
-    public void setUpdateButton(JButton updateButton) {
-        this.btnUpdate = updateButton;
-    }
-
-    public JButton getDeleteButton() {
-        return btnDelete;
-    }
-
-    public void setDeleteButton(JButton deleteButton) {
-        this.btnDelete = deleteButton;
-    }
-
-//    public AddExpenditurePanel frameLayout() {
-//        JFrame frame = new JFrame("AddExpenditure");
-//        frame.setContentPane(new AddExpenditurePanel().panelAddExpenditure);
-//        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        frame.pack();
-//        frame.setVisible(true);
-//        frame.setLocationRelativeTo(null);
-//        frame.setSize(600, 350);
-//        return null;
-//    }
 
 }

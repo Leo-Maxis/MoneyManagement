@@ -64,7 +64,6 @@ public class AddExpenditureTypePanel {
                     txtName.setEditable(false);
                     changeButtonState(true, false, true, true);
                 } catch (Exception exception) {
-//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
@@ -107,7 +106,6 @@ public class AddExpenditureTypePanel {
                     txtName.setEditable(false);
                     changeButtonState(true, false, false, true);
                 } catch (Exception exception) {
-//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
@@ -133,7 +131,6 @@ public class AddExpenditureTypePanel {
                     changeButtonState(false, true, false, false);
                     txtName.setEditable(true);
                 } catch (Exception exception) {
-//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
@@ -169,7 +166,6 @@ public class AddExpenditureTypePanel {
                     txtName.setEditable(false);
                     changeButtonState(true, false, true, true);
                 } catch (Exception exception) {
-//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
@@ -212,7 +208,6 @@ public class AddExpenditureTypePanel {
                     txtName.setEditable(false);
                     changeButtonState(true, false, false, true);
                 } catch (Exception exception) {
-//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
@@ -238,7 +233,6 @@ public class AddExpenditureTypePanel {
                     changeButtonState(false, true, false, false);
                     txtName.setEditable(true);
                 } catch (Exception exception) {
-//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
