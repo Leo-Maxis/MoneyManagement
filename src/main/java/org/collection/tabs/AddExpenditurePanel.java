@@ -41,6 +41,7 @@ public class AddExpenditurePanel extends Component {
         ftfDate.setEditable(isEditable);
         txaNote.setEditable(isEditable);
         cbType.setEditable(isEditable);
+        cbType.setEnabled(isEditable);
     }
 
     public AddExpenditurePanel() {
@@ -49,7 +50,13 @@ public class AddExpenditurePanel extends Component {
         btnNew.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                txtID.setText("");
+                txtName.setText("");
+                ftfAmount.setText("");
+                ftfDate.setText("");
+                txaNote.setText("");
+                changFieldStates(true);
+                changeButtonState(false,true,false,false);
             }
         });
         btnSave.addActionListener(new ActionListener() {
@@ -79,6 +86,75 @@ public class AddExpenditurePanel extends Component {
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
+            }
+        });
+        btnEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeButtonState(true,false,true,true);
+                changFieldStates(true);
+            }
+        });
+        btnUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to update?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    String valid = ExpenditureValidator.validate(txtName,ftfAmount, ftfDate, cbType);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, "Error", valid);
+                        return;
+                    }
+                    Expenditure entity = new Expenditure();
+                    entity.setName(txtName.getText());
+                    entity.setAmount(Double.parseDouble(ftfAmount.getText()));
+                    DateUtil dateUtil = new DateUtil();
+                    entity.setExpenditureDate(dateUtil.toDate(ftfDate.getText()));
+                    entity.setNote(txaNote.getText());
+                    ExpenditureType ext = (ExpenditureType) cbType.getSelectedItem();
+                    entity.setType(ext.getId());
+                    entity.setId(Integer.parseInt(txtID.getText()));
+                    ExpenditureDAO dao = new ExpenditureDAO();
+                    var result = dao.update(entity);
+                    if (result) {
+                        MessageBox.showInfomationMessage(null, "Infomation","Expenditure is updated!!");
+                    } else  {
+                        MessageBox.showErrorMessage(null, "Expenditure cannot be updated!!");
+                    }
+                    changFieldStates(false);
+                    changeButtonState(true, false, false, true);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                if (MessageBox.showConfirmMessage(null, "Do you want to delete?")==JOptionPane.NO_OPTION) {
+                    return;
+                }
+                int id = Integer.parseInt(txtID.getText());
+                ExpenditureDAO dao = new ExpenditureDAO();
+                var result = dao.delete(id);
+                if (result) {
+                    MessageBox.showInfomationMessage(null, "Infomation","Expenditure is deleted!!");
+                    txtID.setText("");
+                    txtName.setText("");
+                    ftfAmount.setText("");
+                    ftfDate.setText("");
+                    txaNote.setText("");
+                } else  {
+                    MessageBox.showErrorMessage(null, "Expenditure cannot be deleted!!");
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+            }
             }
         });
     }
