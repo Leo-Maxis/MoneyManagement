@@ -1,6 +1,5 @@
 package org.collection.tabs;
 
-import org.collection.Main.validator.ExpenditureTypeValidator;
 import org.collection.Main.validator.ExpenditureValidator;
 import org.collection.dao.ExpenditureDAO;
 import org.collection.dao.ExpenditureTypeDAO;
@@ -73,6 +72,7 @@ public class AddExpenditurePanel extends Component {
                     ExpenditureDAO dao = new ExpenditureDAO();
                     entity = dao.insert(entity);
                     txtID.setText("" + entity.getId());
+                    MessageBox.showInfomationMessage(null, "Infomation","Type is saved");
                     changFieldStates(false);
                     changeButtonState(true, false, true, true);
                 } catch (Exception exception) {
