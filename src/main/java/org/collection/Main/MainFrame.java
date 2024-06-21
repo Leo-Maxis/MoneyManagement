@@ -40,7 +40,7 @@ public class MainFrame {
         addExpenditureButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel addExpenditurePanel = new AddExpenditurePanel().getPanelAddExpenditure();
+                JPanel addExpenditurePanel = new AddExpenditurePanel(MainFrame.this).getPanelAddExpenditure();
                 tpnBoard.addTab("Add Expenditure", addExpenditurePanel);
                 tpnBoard.setSelectedComponent(addExpenditurePanel);
             }
@@ -49,7 +49,7 @@ public class MainFrame {
         mnAddNewExpenditure.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel addExpenditurePanel = new AddExpenditurePanel().getPanelAddExpenditure();
+                JPanel addExpenditurePanel = new AddExpenditurePanel(MainFrame.this).getPanelAddExpenditure();
                 tpnBoard.addTab("Add Expenditure", addExpenditurePanel);
                 tpnBoard.setSelectedComponent(addExpenditurePanel);
             }
@@ -189,15 +189,20 @@ public class MainFrame {
         });
     }
     public void showListExpenditureTypes() {
-        JPanel panelListExpenditureTypeExpenditureType = new ListExpenditureTypePanel(MainFrame.this).getPanelListExpenditureType();
-        tpnBoard.addTab("List Expenditure Type", panelListExpenditureTypeExpenditureType);
-        tpnBoard.setSelectedComponent(panelListExpenditureTypeExpenditureType);
+        JPanel panelListExpenditureType = new ListExpenditureTypePanel(MainFrame.this).getPanelListExpenditureType();
+        tpnBoard.addTab("List Expenditure Type", panelListExpenditureType);
+        tpnBoard.setSelectedComponent(panelListExpenditureType);
     }
 
     public void showEditExpenditureTypes(int id) {
         JPanel panelAddExpenditureType = new AddExpenditureTypePanel(this, id).getPanelAddExpenditureType();
         tpnBoard.addTab("Edit Expenditure Type", panelAddExpenditureType);
         tpnBoard.setSelectedComponent(panelAddExpenditureType);
+    }
+    public void showListExpenditure() {
+        JPanel listExpenditurePanel = new ListExpenditurePanel().getPanelListExpenditure();
+        tpnBoard.addTab("List Expenditure", listExpenditurePanel);
+        tpnBoard.setSelectedComponent(listExpenditurePanel);
     }
 
     public static void main(String[] args) {

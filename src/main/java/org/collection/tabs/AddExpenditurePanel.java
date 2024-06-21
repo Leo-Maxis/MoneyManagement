@@ -1,5 +1,6 @@
 package org.collection.tabs;
 
+import org.collection.Main.MainFrame;
 import org.collection.Main.validator.ExpenditureValidator;
 import org.collection.dao.ExpenditureDAO;
 import org.collection.dao.ExpenditureTypeDAO;
@@ -28,6 +29,8 @@ public class AddExpenditurePanel extends Component {
     private JButton btnList;
     private JButton btnEdit;
 
+    private MainFrame mainFrame;
+
     private void changeButtonState(boolean edit, boolean save, boolean update, boolean delete) {
         btnEdit.setEnabled(edit);
         btnSave.setEnabled(save);
@@ -44,7 +47,8 @@ public class AddExpenditurePanel extends Component {
         cbType.setEnabled(isEditable);
     }
 
-    public AddExpenditurePanel() {
+    public AddExpenditurePanel(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         loadType();
         changeButtonState(false, true, false, false);
         btnNew.addActionListener(new ActionListener() {
@@ -155,6 +159,12 @@ public class AddExpenditurePanel extends Component {
                 exception.printStackTrace();
                 MessageBox.showErrorMessage(null, "Error", exception.getMessage());
             }
+            }
+        });
+        btnList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.showListExpenditure();
             }
         });
     }
