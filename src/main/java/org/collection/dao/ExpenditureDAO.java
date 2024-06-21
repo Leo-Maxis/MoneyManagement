@@ -1,9 +1,12 @@
 package org.collection.dao;
 
 import org.collection.entity.Expenditure;
+import org.collection.entity.ExpenditureType;
 import org.collection.util.DatabaseUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExpenditureDAO {
     public Expenditure insert(Expenditure entity) throws SQLException, ClassNotFoundException {
@@ -47,6 +50,28 @@ public class ExpenditureDAO {
             PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             return pstmt.executeUpdate() > 0;
+        }
+    }
+    public List<Expenditure> findAll() throws SQLException, ClassNotFoundException {
+        String sql = "select * from Expenditure";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            List<Expenditure> list = new ArrayList<>();
+
+            try(ResultSet rs = pstmt.executeQuery();) {
+                while (rs.next()) {
+                    Expenditure entity = new Expenditure();
+                    entity.setId(rs.getInt("id"));
+                    entity.setName(rs.getString("name"));
+                    entity.setAmount(rs.getDouble("amount"));
+                    entity.setExpenditureDate(rs.getDate("expenditureDate"));
+                    entity.setNote(rs.getString("note"));
+                    entity.setType(rs.getInt("type"));
+                    list.add(entity);
+                }
+            }
+            return list;
         }
     }
 }
