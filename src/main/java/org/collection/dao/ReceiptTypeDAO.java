@@ -62,22 +62,22 @@ public class ReceiptTypeDAO {
             return list;
         }
     }
-    public List<ReceiptType> findById(int id) throws SQLException, ClassNotFoundException {
+    public ReceiptType findById(int id) throws SQLException, ClassNotFoundException {
         String sql = "select * from ReceiptType where id=?";
 
         try(Connection con = DatabaseUtil.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);) {
-            List<ReceiptType> list = new ArrayList<>();
+            pstmt.setInt(1,id);
 
             try(ResultSet rs = pstmt.executeQuery();) {
                 while (rs.next()) {
                     ReceiptType entity = new ReceiptType();
                     entity.setId(rs.getInt("id"));
                     entity.setName(rs.getString("name"));
-                    list.add(entity);
+                    return entity;
                 }
             }
-            return list;
+            return null;
         }
     }
 }
