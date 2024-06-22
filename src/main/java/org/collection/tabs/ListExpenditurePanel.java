@@ -34,6 +34,10 @@ public class ListExpenditurePanel extends Component {
                     }
                     ExpenditureDAO dao = new ExpenditureDAO();
                     int selectedRow = tblList.getSelectedRow();
+                    if (selectedRow == -1) {
+                        MessageBox.showErrorMessage(null, "Error", "Please choose atleast one row to delete!");
+                        return;
+                    }
                     Object idObj = tblList.getValueAt(selectedRow, 0);
                     if (idObj != null) {
                         int id = Integer.parseInt(idObj.toString());
@@ -55,6 +59,10 @@ public class ListExpenditurePanel extends Component {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = tblList.getSelectedRow();
+                if (selectedRow == -1) {
+                    MessageBox.showErrorMessage(null, "Error", "Please choose atleast one row to edit!");
+                    return;
+                }
                 Object idObj = tblList.getValueAt(selectedRow, 0);
                 if (idObj != null) {
                     int id = Integer.parseInt(idObj.toString());
@@ -66,6 +74,10 @@ public class ListExpenditurePanel extends Component {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = tblList.getSelectedRow();
+                if (selectedRow == -1) {
+                    MessageBox.showErrorMessage(null, "Error", "Please choose atleast one row to view detail!");
+                    return;
+                }
                 Object idObj = tblList.getValueAt(selectedRow, 0);
                 if (idObj != null) {
                     int id = Integer.parseInt(idObj.toString());
