@@ -78,9 +78,11 @@ public class ListExpenditurePanel extends Component {
     private void initTable() {
         model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[] {"ID","Name","Amount","Date","Type"});
-
         tblList.setModel(model);
     }
+
+
+
 
     private void loadAll() {
         try {

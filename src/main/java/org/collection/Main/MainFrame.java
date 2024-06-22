@@ -174,7 +174,7 @@ public class MainFrame {
         mnAddReceiptType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel panelAddReceiptType = new AddReceiptTypePanel().getPanelAddReceiptType();
+                JPanel panelAddReceiptType = new AddReceiptTypePanel(MainFrame.this).getPanelAddReceiptType();
                 tpnBoard.addTab("Add Receipt Type", panelAddReceiptType);
                 tpnBoard.setSelectedComponent(panelAddReceiptType);
             }
@@ -182,7 +182,7 @@ public class MainFrame {
         mnListReceiptType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel panelListReceiptType = new ListReceiptTypePanel().getPanelListReceiptType();
+                JPanel panelListReceiptType = new ListReceiptTypePanel(MainFrame.this).getPanelListReceiptType();
                 tpnBoard.addTab("List Receipt Type", panelListReceiptType);
                 tpnBoard.setSelectedComponent(panelListReceiptType);
             }
@@ -206,13 +206,19 @@ public class MainFrame {
     }
     public void showEditExpenditure(int id) {
         JPanel panelAddExpenditure = new AddExpenditurePanel(this, id).getPanelAddExpenditure();
-        tpnBoard.addTab("Edit Expenditure Type", panelAddExpenditure);
+        tpnBoard.addTab("Edit Expenditure", panelAddExpenditure);
         tpnBoard.setSelectedComponent(panelAddExpenditure);
     }
     public void showDetailExpenditure(int id) {
         JPanel detailExpenditure = new DetailExpenditurePanel(id).getPanelDetail();
-        tpnBoard.addTab("Edit Expenditure Type", detailExpenditure);
+        tpnBoard.addTab("Detail Expenditure", detailExpenditure);
         tpnBoard.setSelectedComponent(detailExpenditure);
+    }
+
+    public void showListReceiptType() {
+        JPanel listReceiptTypePanel = new ListReceiptTypePanel(MainFrame.this).getPanelListReceiptType();
+        tpnBoard.addTab("List Receipt Type", listReceiptTypePanel);
+        tpnBoard.setSelectedComponent(listReceiptTypePanel);
     }
 
     public static void main(String[] args) {

@@ -2,14 +2,14 @@ package org.collection.entity;
 
 import java.io.Serializable;
 
-public class ExpenditureType implements Serializable {
+public class ReceiptType implements Serializable {
     private int id;
     private String name;
 
-    public ExpenditureType() {
+    public ReceiptType() {
     }
 
-    public ExpenditureType(int id, String name) {
+    public ReceiptType(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -32,6 +32,6 @@ public class ExpenditureType implements Serializable {
 
     @Override
     public String toString() {
-        return name ;
+        return name;
     }
 }
