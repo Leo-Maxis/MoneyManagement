@@ -209,6 +209,11 @@ public class MainFrame {
         tpnBoard.addTab("Edit Expenditure Type", panelAddExpenditure);
         tpnBoard.setSelectedComponent(panelAddExpenditure);
     }
+    public void showDetailExpenditure(int id) {
+        JPanel detailExpenditure = new DetailExpenditurePanel(id).getPanelDetail();
+        tpnBoard.addTab("Edit Expenditure Type", detailExpenditure);
+        tpnBoard.setSelectedComponent(detailExpenditure);
+    }
 
     public static void main(String[] args) {
         frame.setContentPane(new MainFrame().mainPanel);

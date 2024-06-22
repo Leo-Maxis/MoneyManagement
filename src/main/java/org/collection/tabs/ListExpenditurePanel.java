@@ -62,6 +62,17 @@ public class ListExpenditurePanel extends Component {
                 }
             }
         });
+        btnViewDetail.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tblList.getSelectedRow();
+                Object idObj = tblList.getValueAt(selectedRow, 0);
+                if (idObj != null) {
+                    int id = Integer.parseInt(idObj.toString());
+                    mainFrame.showDetailExpenditure(id);
+                }
+            }
+        });
     }
 
     private void initTable() {
