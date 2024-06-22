@@ -62,9 +62,4 @@ public class DetailExpenditurePanel {
             MessageBox.showErrorMessage(null,"Error", e.getMessage());
         }
     }
-    public void showDetailExpenditure(int id) {
-        JPanel detailPanel = new JPanel();
-
-    }
-
 }
