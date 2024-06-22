@@ -35,19 +35,21 @@ public class ListExpenditureTypePanel {
                     }
                     ExpenditureTypeDAO dao = new ExpenditureTypeDAO();
                     int selectedRow = tblList.getSelectedRow();
+                    if (selectedRow == -1) {
+                        MessageBox.showErrorMessage(null, "Please choose atleast one row to delete!");
+                        return;
+                    }
                     Object idObj = tblList.getValueAt(selectedRow, 0);
-                   if (idObj != null) {
-                       int id = Integer.parseInt(idObj.toString());
-                       if (dao.delete(id)) {
-                           MessageBox.showInfomationMessage(null, "Infomation","Type is deleted!");
-                           loadData();
-                       }
-                       else  {
-                           MessageBox.showErrorMessage(null, "Error", "Typed can not be deleted!");
-                       }
-                   }
+                    if (idObj != null) {
+                        int id = Integer.parseInt(idObj.toString());
+                        if (dao.delete(id)) {
+                                MessageBox.showInfomationMessage(null, "Infomation", "Type is deleted!");
+                                loadData();
+                        } else {
+                                MessageBox.showErrorMessage(null, "Error", "Typed can not be deleted!");
+                        }
+                    }
                 } catch (Exception exception) {
-//                    JOptionPane.showMessageDialog(null, "Error: " + exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
@@ -57,9 +59,12 @@ public class ListExpenditureTypePanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = tblList.getSelectedRow();
-                Object idObj = tblList.getValueAt(selectedRow, 0);
-                mainFrame.showEditExpenditureTypes(Integer.parseInt(idObj.toString()));
-
+                if(selectedRow != -1) {
+                    Object idObj = tblList.getValueAt(selectedRow, 0);
+                    mainFrame.showEditExpenditureTypes(Integer.parseInt(idObj.toString()));
+                } else {
+                    MessageBox.showErrorMessage(null, "Please choose atleast one row to edit!");
+                }
             }
         });
     }
