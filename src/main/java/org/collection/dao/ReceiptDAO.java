@@ -27,6 +27,21 @@ public class ReceiptDAO {
             return entity;
         }
     }
+    public boolean update(Receipt entity) throws SQLException, ClassNotFoundException {
+        String sql = "update Receipts set name=?, amount =?, note=?, receiptDate=?, type=? where id=?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement ptsmt = conn.prepareStatement(sql)) {
+            ptsmt.setString(1, entity.getName());
+            ptsmt.setDouble(2, entity.getAmount());
+            ptsmt.setString(3, entity.getNote());
+            java.sql.Date date = new Date(entity.getReceiptDate().getTime());
+            ptsmt.setDate(4, date);
+            ptsmt.setInt(5, entity.getType());
+            ptsmt.setInt(6, entity.getId());
+            return ptsmt.executeUpdate() > 0;
+
+        }
+    }
     public List<Receipt> findAll() throws SQLException, ClassNotFoundException {
         String sql = "select * from Receipts";
 

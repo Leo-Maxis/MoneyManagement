@@ -104,6 +104,49 @@ public class AddNewReceiptPanel extends Component {
                 newEditable();
             }
         });
+        btnUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (MessageBox.showConfirmMessage(null,"Do you want to update?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    String valid = ExpenditureValidator.validate(txtName,ftfAmount,ftfDate,cbType);
+                    if (valid!=null) {
+                        MessageBox.showErrorMessage(null, valid);
+                        return;
+                    }
+                    Receipt entity = new Receipt();
+                    entity.setName(txtName.getText());
+                    entity.setAmount(Double.parseDouble(ftfAmount.getText()));
+                    DateUtil date = new DateUtil();
+                    entity.setReceiptDate(date.toDate(ftfDate.getText()));
+                    entity.setNote(txaNote.getText());
+                    ReceiptType rec = (ReceiptType) cbType.getSelectedItem();
+                    entity.setType(rec.getId());
+                    entity.setId(Integer.parseInt(txtID.getText()));
+                    ReceiptDAO dao = new ReceiptDAO();
+                    var result = dao.update(entity);
+                    if (result) {
+                        MessageBox.showInfomationMessage(null, "Infomation","Receipt is updated");
+                    } else  {
+                        MessageBox.showErrorMessage(null, "Receipt cannot be updated");
+                    }
+                    changeButtonState(true, false,false,true);
+                    changFieldStates(false);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    MessageBox.showErrorMessage(null, ex.getMessage());
+                }
+            }
+        });
+        btnEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeButtonState(true,false,true,true);
+                changFieldStates(true);
+            }
+        });
     }
 
     public JPanel getPanelAddReceipt() {
