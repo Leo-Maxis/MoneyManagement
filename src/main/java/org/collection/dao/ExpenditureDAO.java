@@ -1,7 +1,6 @@
 package org.collection.dao;
 
 import org.collection.entity.Expenditure;
-import org.collection.entity.ExpenditureType;
 import org.collection.util.DatabaseUtil;
 
 import java.sql.*;
