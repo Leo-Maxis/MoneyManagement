@@ -1,6 +1,7 @@
 package org.collection.tabs;
 
 import org.collection.Main.validator.ExpenditureValidator;
+import org.collection.dao.ExpenditureDAO;
 import org.collection.dao.ExpenditureTypeDAO;
 import org.collection.dao.ReceiptDAO;
 import org.collection.dao.ReceiptTypeDAO;
@@ -145,6 +146,33 @@ public class AddNewReceiptPanel extends Component {
             public void actionPerformed(ActionEvent e) {
                 changeButtonState(true,false,true,true);
                 changFieldStates(true);
+            }
+        });
+
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to delete?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    int id = Integer.parseInt(txtID.getText());
+                    ReceiptDAO dao = new ReceiptDAO();
+                    var result = dao.delete(id);
+                    if (result) {
+                        MessageBox.showInfomationMessage(null, "Infomation","Receipts is deleted!!");
+                        txtID.setText("");
+                        txtName.setText("");
+                        ftfAmount.setText("");
+                        ftfDate.setText("");
+                        txaNote.setText("");
+                    } else  {
+                        MessageBox.showErrorMessage(null, "Recepits cannot be deleted!!");
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
             }
         });
     }

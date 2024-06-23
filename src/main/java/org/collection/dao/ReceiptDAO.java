@@ -42,6 +42,16 @@ public class ReceiptDAO {
 
         }
     }
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
+        String sql = "delete from Receipts where id =?";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            return pstmt.executeUpdate() > 0;
+        }
+    }
+
     public List<Receipt> findAll() throws SQLException, ClassNotFoundException {
         String sql = "select * from Receipts";
 
