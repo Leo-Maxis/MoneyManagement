@@ -230,6 +230,11 @@ public class MainFrame {
         tpnBoard.addTab("List Receipt", listRecepitPanel);
         tpnBoard.setSelectedComponent(listRecepitPanel);
     }
+    public void showEditReceipt(int id) {
+        JPanel panelAddReceipt = new AddNewReceiptPanel(MainFrame.this, id).getPanelAddReceipt();
+        tpnBoard.addTab("Edit Receipt", panelAddReceipt);
+        tpnBoard.setSelectedComponent(panelAddReceipt);
+    }
 
     public static void main(String[] args) {
         frame.setContentPane(new MainFrame().mainPanel);

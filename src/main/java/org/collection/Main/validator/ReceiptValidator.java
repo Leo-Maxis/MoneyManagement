@@ -1,11 +1,12 @@
 package org.collection.Main.validator;
 
-import org.collection.entity.ExpenditureType;
+
+import org.collection.entity.ReceiptType;
 
 import javax.swing.*;
 
-public class ExpenditureValidator {
-    public static String validate(JTextField txtName, JTextField txtAmount, JTextField txtDate, JComboBox<ExpenditureType> cbxType) {
+public class ReceiptValidator {
+    public static String validate(JTextField txtName, JTextField txtAmount, JTextField txtDate, JComboBox<ReceiptType> cbxType) {
         StringBuilder sb = new StringBuilder();
         if (Validator.isEmpty(txtName)) {
             sb.append("Name must be entered\n");
@@ -24,5 +25,4 @@ public class ExpenditureValidator {
         }
         return sb.isEmpty() ? null : sb.toString();
     }
-
 }

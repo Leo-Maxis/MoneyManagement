@@ -89,7 +89,7 @@ public class ReceiptDAO {
                     entity.setId(rs.getInt("id"));
                     entity.setName(rs.getString("name"));
                     entity.setAmount(rs.getDouble("amount"));
-                    entity.setReceiptDate(rs.getDate("expenditureDate"));
+                    entity.setReceiptDate(rs.getDate("receiptDate"));
                     entity.setNote(rs.getString("note"));
                     entity.setType(rs.getInt("type"));
                     return entity;

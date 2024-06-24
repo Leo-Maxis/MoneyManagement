@@ -1,6 +1,7 @@
 package org.collection.tabs;
 
 import org.collection.Main.MainFrame;
+import org.collection.dao.ExpenditureDAO;
 import org.collection.dao.ReceiptDAO;
 import org.collection.entity.Receipt;
 import org.collection.util.MessageBox;
@@ -29,7 +30,46 @@ public class ListReceiptPanel extends Component {
         btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    if (MessageBox.showConfirmMessage(null, "Do you want to delete?")==JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    ReceiptDAO dao = new ReceiptDAO();
+                    int selectedRow = tblList.getSelectedRow();
+                    if (selectedRow == -1) {
+                        MessageBox.showErrorMessage(null, "Error", "Please choose atleast one row to delete!");
+                        return;
+                    }
+                    Object idObj = tblList.getValueAt(selectedRow, 0);
+                    if (idObj != null) {
+                        int id = Integer.parseInt(idObj.toString());
+                        if (dao.delete(id)) {
+                            MessageBox.showInfomationMessage(null, "Infomation","Receipt is deleted!");
+                            loadAll();
+                        }
+                        else  {
+                            MessageBox.showErrorMessage(null, "Error", "Receipt can not be deleted!");
+                        }
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    MessageBox.showErrorMessage(null, "Error", exception.getMessage());
+                }
+            }
+        });
+        btnEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tblList.getSelectedRow();
+                if (selectedRow == -1) {
+                    MessageBox.showErrorMessage(null, "Error", "Please choose atleast one row to edit!");
+                    return;
+                }
+                Object idObj = tblList.getValueAt(selectedRow, 0);
+                if (idObj != null) {
+                    int id = Integer.parseInt(idObj.toString());
+                    mainFrame.showEditReceipt(id);
+                }
             }
         });
     }
