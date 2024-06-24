@@ -1,5 +1,6 @@
 package org.collection.tabs;
 
+import org.collection.Main.MainFrame;
 import org.collection.Main.validator.ExpenditureValidator;
 import org.collection.dao.ExpenditureDAO;
 import org.collection.dao.ExpenditureTypeDAO;
@@ -30,6 +31,8 @@ public class AddNewReceiptPanel extends Component {
     private JButton btnDelete;
     private JButton btnList;
     private JButton btnEdit;
+
+    private MainFrame mainFrame;
 
     private void newEditable() {
         txtID.setText("");
@@ -67,7 +70,7 @@ public class AddNewReceiptPanel extends Component {
         }
     }
 
-    public AddNewReceiptPanel() {
+    public AddNewReceiptPanel(MainFrame mainFrame) {
         loadType();
         changeButtonState(false, true,false,false);
         btnSave.addActionListener(new ActionListener() {
@@ -173,6 +176,12 @@ public class AddNewReceiptPanel extends Component {
                     exception.printStackTrace();
                     MessageBox.showErrorMessage(null, "Error", exception.getMessage());
                 }
+            }
+        });
+        btnList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.showListReceipt();
             }
         });
     }

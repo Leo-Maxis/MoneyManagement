@@ -56,7 +56,8 @@ public class ReceiptDAO {
         String sql = "select * from Receipts";
 
         try(Connection con = DatabaseUtil.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            PreparedStatement pstmt = con.prepareStatement(sql)) {
+
             List<Receipt> list = new ArrayList<>();
 
             try(ResultSet rs = pstmt.executeQuery()) {
@@ -65,13 +66,36 @@ public class ReceiptDAO {
                     entity.setId(rs.getInt("id"));
                     entity.setName(rs.getString("name"));
                     entity.setAmount(rs.getDouble("amount"));
-                    entity.setReceiptDate(rs.getDate("expenditureDate"));
+                    entity.setReceiptDate(rs.getDate("receiptDate"));
                     entity.setNote(rs.getString("note"));
                     entity.setType(rs.getInt("type"));
                     list.add(entity);
                 }
             }
             return list;
+        }
+    }
+    public Receipt findById(int id) throws SQLException, ClassNotFoundException {
+        String sql = "select * from Receipts where id =?";
+
+        try(Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);) {
+            List<Receipt> list = new ArrayList<>();
+            pstmt.setInt(1,id);
+
+            try(ResultSet rs = pstmt.executeQuery();) {
+                if (rs.next()) {
+                    Receipt entity = new Receipt();
+                    entity.setId(rs.getInt("id"));
+                    entity.setName(rs.getString("name"));
+                    entity.setAmount(rs.getDouble("amount"));
+                    entity.setReceiptDate(rs.getDate("expenditureDate"));
+                    entity.setNote(rs.getString("note"));
+                    entity.setType(rs.getInt("type"));
+                    return entity;
+                }
+            }
+            return null;
         }
     }
 }

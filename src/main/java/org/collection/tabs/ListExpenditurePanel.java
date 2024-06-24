@@ -85,6 +85,12 @@ public class ListExpenditurePanel extends Component {
                 }
             }
         });
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     private void initTable() {

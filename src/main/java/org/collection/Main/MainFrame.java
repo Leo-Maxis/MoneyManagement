@@ -73,7 +73,7 @@ public class MainFrame {
         addReceiptButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel addNewReceiptPanel = new AddNewReceiptPanel().getPanelAddReceipt();
+                JPanel addNewReceiptPanel = new AddNewReceiptPanel(MainFrame.this).getPanelAddReceipt();
                 tpnBoard.addTab("Add New Receipt", addNewReceiptPanel);
                 tpnBoard.setSelectedComponent(addNewReceiptPanel);
             }
@@ -81,7 +81,7 @@ public class MainFrame {
         mnAddNewReceipt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel addNewReceiptPanel = new AddNewReceiptPanel().getPanelAddReceipt();
+                JPanel addNewReceiptPanel = new AddNewReceiptPanel(MainFrame.this).getPanelAddReceipt();
                 tpnBoard.addTab("Add New Receipt", addNewReceiptPanel);
                 tpnBoard.setSelectedComponent(addNewReceiptPanel);
             }
@@ -89,16 +89,16 @@ public class MainFrame {
         listReceiptButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel listReceiptPanel = new ListReceiptPanel().getPanelListReceipt();
-                tpnBoard.addTab("Add New Receipt", listReceiptPanel);
+                JPanel listReceiptPanel = new ListReceiptPanel(MainFrame.this).getPanelListReceipt();
+                tpnBoard.addTab("List Receipt", listReceiptPanel);
                 tpnBoard.setSelectedComponent(listReceiptPanel);
             }
         });
         mnListReceipt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel listReceiptPanel = new ListReceiptPanel().getPanelListReceipt();
-                tpnBoard.addTab("Add New Receipt", listReceiptPanel);
+                JPanel listReceiptPanel = new ListReceiptPanel(MainFrame.this).getPanelListReceipt();
+                tpnBoard.addTab("List Receipt", listReceiptPanel);
                 tpnBoard.setSelectedComponent(listReceiptPanel);
             }
         });
@@ -224,6 +224,11 @@ public class MainFrame {
         JPanel panelAddReceiptType = new AddReceiptTypePanel(this, id).getPanelAddReceiptType();
         tpnBoard.addTab("Edit Receipt Type", panelAddReceiptType);
         tpnBoard.setSelectedComponent(panelAddReceiptType);
+    }
+    public void showListReceipt() {
+        JPanel listRecepitPanel = new ListReceiptPanel(MainFrame.this).getPanelListReceipt();
+        tpnBoard.addTab("List Receipt", listRecepitPanel);
+        tpnBoard.setSelectedComponent(listRecepitPanel);
     }
 
     public static void main(String[] args) {
