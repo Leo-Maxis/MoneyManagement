@@ -132,6 +132,8 @@ public class AddNewReceiptPanel extends Component {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newEditable();
+                changeButtonState(false,true,false,false);
+                changFieldStates(true);
             }
         });
         btnUpdate.addActionListener(new ActionListener() {
@@ -248,6 +250,8 @@ public class AddNewReceiptPanel extends Component {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newEditable();
+                changeButtonState(false,true,false,false);
+                changFieldStates(true);
             }
         });
         btnUpdate.addActionListener(new ActionListener() {

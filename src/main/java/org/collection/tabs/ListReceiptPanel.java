@@ -1,7 +1,6 @@
 package org.collection.tabs;
 
 import org.collection.Main.MainFrame;
-import org.collection.dao.ExpenditureDAO;
 import org.collection.dao.ReceiptDAO;
 import org.collection.entity.Receipt;
 import org.collection.util.MessageBox;
@@ -69,6 +68,21 @@ public class ListReceiptPanel extends Component {
                 if (idObj != null) {
                     int id = Integer.parseInt(idObj.toString());
                     mainFrame.showEditReceipt(id);
+                }
+            }
+        });
+        btnViewDetail.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tblList.getSelectedRow();
+                if (selectedRow == -1) {
+                    MessageBox.showErrorMessage(null, "Error", "Please choose atleast one row to view detail!");
+                    return;
+                }
+                Object idObj = tblList.getValueAt(selectedRow, 0);
+                if (idObj != null) {
+                    int id = Integer.parseInt(idObj.toString());
+                    mainFrame.showDetailReceipt(id);
                 }
             }
         });
